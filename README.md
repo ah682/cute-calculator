@@ -1,14 +1,12 @@
 # Cute Calculator
 
-A small React 18 and TypeScript calculator demo built with Vite and Tailwind CSS.
-It presents basic arithmetic, decimal input, clearing, animated display/error
-feedback and an animated background. It is a frontend UI experiment, with no
-backend, accounts or stored calculation history.
+A React and TypeScript calculator with an animated display and background, built
+with Vite and Tailwind CSS. It supports basic arithmetic, decimal input and a
+clear button, with a short animation when an expression cannot be evaluated.
 
 ## Run locally
 
-The locked Vite package declares Node.js `^18.0.0 || ^20.0.0 || >=22.0.0`.
-Use a compatible runtime and npm:
+Use Node.js 22 or newer and npm.
 
 ```bash
 git clone https://github.com/ah682/cute-calculator.git
@@ -17,23 +15,20 @@ npm ci
 npm run dev
 ```
 
-Vite prints the local URL. `npm run build` runs TypeScript and creates `dist/`;
-`npm run preview` serves the build. `npm run lint` and `npm run format:check` run
-the configured source checks. There is no automated test script at present.
+Open the local URL printed by Vite. Click the on-screen keys to enter a calculation.
+Results are rounded to four decimal places, with trailing zeros removed.
 
-## Status and limitations
+## Development
 
-This is a visual arithmetic demo, not a financial or scientific calculator. The
-current evaluator uses a filtered JavaScript expression and displays results to
-four decimal places; floating-point behavior, invalid expressions and nonfinite
-results need review before wider use. Do not treat input filtering as a reusable
-untrusted-code execution boundary. Controls and keyboard/screen-reader operation
-also need a dedicated accessibility review.
+- `npm run build` checks TypeScript and creates `dist/`.
+- `npm run preview` serves the built site locally.
+- `npm run lint` checks the source with ESLint.
+- `npm run format:check` checks source formatting with Prettier.
 
-`package.json` and `public/CNAME` name `cutecalculator.avaonline.me`; these are
-hosting configuration, not evidence that the deployment is currently reachable.
-Changes should include arithmetic edge cases and a manual interaction check.
+The calculator logic and controls are in `src/App.tsx`; the background is in
+`src/components/AnimatedBackground.tsx`. There is no test script yet.
 
-React/Three.js ecosystem libraries and any bundled images retain their respective
-licences and attribution requirements. This README claims neither external design
-authorship nor new permissions for third-party assets, and adds no licence grant.
+The evaluator uses JavaScript numbers and a filtered expression passed to
+`Function`, so floating-point rounding and division by zero need attention when
+changing the arithmetic. The controls currently use pointer clicks; keyboard input
+has not been added.
